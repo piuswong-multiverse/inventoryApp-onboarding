@@ -1,0 +1,26 @@
+{
+  "name": "inventoryapp-onboarding",
+  "version": "1.0.0",
+  "description": "Testing, learning, etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piuswong-multiverse/inventoryApp-onboarding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piuswong-multiverse/inventoryApp-onboarding/issues"
+  },
+  "homepage": "https://github.com/piuswong-multiverse/inventoryApp-onboarding#readme",
+  "dependencies": {
+    "jest": "^29.0.1",
+    "nodemon": "^2.0.19",
+    "sequelize": "^6.21.4",
+    "sqlite3": "^5.0.11"
+  }
+}
