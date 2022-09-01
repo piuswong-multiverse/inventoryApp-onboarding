@@ -55,11 +55,10 @@ describe('Basic database creation', () => {
             }
         ];
         let newItems = await Item.bulkCreate(input);
-        const check = await Item.findAll({
-            raw: true // this property changes result to a regular object
-        });
-        console.log("check", check, check.length); // debug
+        const check = await Item.findAll();
+        // console.log("check", check, check.length); // debug
         expect(check.length).toBe(2);
+        expect(check).toMatchObject(input);
     });
 
 });
