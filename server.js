@@ -29,6 +29,8 @@ const getOneItem = async (id) => {
 };
 
 // Define routes; need async if accessing db
+
+// All items
 app.get('/', async (req, res) => {
     // UI TBD
     try {
@@ -40,6 +42,7 @@ app.get('/', async (req, res) => {
     }
 });
 
+// One item
 app.get('/items/:num', async (req,res) => {
     try {
         const {num} = req.params;
@@ -49,6 +52,11 @@ app.get('/items/:num', async (req,res) => {
     } catch (err) {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/100/200"><br/>`); // debug
     }
+});
+
+// All other routes
+app.all('*', (req, res) => {
+    res.status(404).send('No page with this address here... <br/> <img src="http://placekitten.com/300/400"><br/>');
 });
 
 // Start server
