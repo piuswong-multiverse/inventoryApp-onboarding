@@ -48,12 +48,18 @@ describe('Basic database creation', () => {
                 description: "Looks like a writing utensil with ink.",
                 price: 0.10,
                 imageUrl: "http://placekitten.com/g/200/200",
+            },
+            {
+                name: "Pencil",
+                description: "Writing utensil with graphite.",
+                price: 0.05,
+                imageUrl: "http://placekitten.com/g/200/210",
             }
         ];
         let newItems = await Item.bulkCreate(input);
         const check = await Item.findAll();
         // console.log("check", check, check.length); // debug
-        expect(check.length).toBe(2);
+        expect(check.length).toBe(3);
         expect(check).toMatchObject(input);
     });
 
