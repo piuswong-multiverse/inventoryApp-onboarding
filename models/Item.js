@@ -5,7 +5,8 @@ const db = require('./db');
 const Item = db.define('Items', {
     id: { // primary key
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     name: {
         type: Sequelize.STRING,

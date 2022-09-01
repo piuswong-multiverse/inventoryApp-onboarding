@@ -23,8 +23,8 @@ app.get('/', async (req, res) => {
     // UI TBD
     try {
         const allItems = await getAllItems(); // Data TBD
-        res.send(JSON.stringify(allItems));
-        // res.status(200).json({allItems});
+        // res.send(JSON.stringify(allItems));
+        res.status(200).json({allItems});
     } catch(err) {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
     }

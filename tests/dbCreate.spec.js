@@ -14,7 +14,6 @@ describe('Basic database creation', () => {
 
         let input = 
             {
-                id: 1,
                 name: "Box",
                 description: "It's a box...",
                 price: 2.99,
@@ -29,7 +28,6 @@ describe('Basic database creation', () => {
             }
         });
         // console.log("check", check); // debug
-        expect(check[0].dataValues.id).toBe(1);
         expect(check[0].dataValues.name).toBe(input.name);
         expect(check[0].dataValues.price).toBe(input.price);
         expect(check[0].dataValues).toMatchObject(input);
@@ -40,14 +38,12 @@ describe('Basic database creation', () => {
         await db.sync({force:true});
         let input = [
             {
-                id: 1,
                 name: "Box",
                 description: "It's a box...",
                 price: 2.99,
                 imageUrl: "http://placekitten.com/g/250/250",
             },
             {
-                id: 2,
                 name: "Pen",
                 description: "Looks like a writing utensil with ink.",
                 price: 0.10,
