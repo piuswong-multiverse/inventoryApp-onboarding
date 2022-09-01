@@ -3,25 +3,15 @@
 const db = require('../models/db');
 const Item = require('../models/Item');
 
-
-// // Add data to db to check
-// Item.sync().then( (res) => {
-//     Item.create({
-//         name: "Box",
-//         description: "It's a box...",
-//         price: 2.99,
-//         imageUrl: "http://placekitten.com/g/250/250",
-//     }).then((res) => {
-//         console.log(`Successfully added data for id ${res.id}`);
-//         db.close();
-//         console.log('Closed connection to database.');
-//     });
-// });
-
 describe('Basic database creation', () => {
-    test('Can read all properties of one item', async () => {
-        // following line is OK for testing but bad for production, clearing db?
+
+    // following line is OK for testing but bad for production, clearing db?
+    beforeAll(async () => {
         await db.sync({force:true});
+    });
+
+    test('Can read all properties of one item', async () => {
+
         let input = 
             {
                 id: 1,
@@ -30,22 +20,46 @@ describe('Basic database creation', () => {
                 price: 2.99,
                 imageUrl: "http://placekitten.com/g/250/250",
             }
-            // {
-            //     name: "Pen",
-            //     description: "Looks like a writing utensil with ink.",
-            //     price: 0.10,
-            //     imageUrl: "http://placekitten.com/g/200/200",
-            // }
         ;
         let firstItem = await Item.create(input);
-        console.log(`Successfully added data for id ${firstItem.id}`);
+        // console.log(`Successfully added data for id ${firstItem.id}`);
         const check = await Item.findAll({
             where: {
                 id: 1
             }
         });
-        console.log("check", check[0].dataValues.id); // debug
+        // console.log("check", check); // debug
         expect(check[0].dataValues.id).toBe(1);
-        // expect(firstItem.name.toBe(input.name));
+        expect(check[0].dataValues.name).toBe(input.name);
+        expect(check[0].dataValues.price).toBe(input.price);
+        expect(check[0].dataValues).toMatchObject(input);
     });
+
+    test('Can read all properties of more than one item', async () => {
+        // following line is OK for testing but bad for production, clearing db?
+        await db.sync({force:true});
+        let input = [
+            {
+                id: 1,
+                name: "Box",
+                description: "It's a box...",
+                price: 2.99,
+                imageUrl: "http://placekitten.com/g/250/250",
+            },
+            {
+                id: 2,
+                name: "Pen",
+                description: "Looks like a writing utensil with ink.",
+                price: 0.10,
+                imageUrl: "http://placekitten.com/g/200/200",
+            }
+        ];
+        let newItems = await Item.bulkCreate(input);
+        const check = await Item.findAll({
+            raw: true // this property changes result to a regular object
+        });
+        console.log("check", check, check.length); // debug
+        expect(check.length).toBe(2);
+    });
+
 });

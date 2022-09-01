@@ -14,7 +14,6 @@ Item.sync().then( (res) => {
             imageUrl: "http://placekitten.com/g/250/250",
         },
         {
-
             id: 2,
             name: "Pen",
             description: "Looks like a writing utensil with ink.",

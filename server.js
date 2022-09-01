@@ -9,11 +9,25 @@ const port = 3000; // change in deployment or as needed
 app.use(express.static('public')); // for React build later?
 
 // Access database
+const db = require('./models/db');
+const Item = require('./models/Item');
 
-// Define routes
-app.get('/', (req, res) => {
+// GET all
+const getAllItems = async () => {
+    const items = await Item.findAll();
+    return items;
+};
+
+// Define routes; need async if accessing db
+app.get('/', async (req, res) => {
     // UI TBD
-    res.send('Main page data goes here! <br/> <img src="http://placekitten.com/200/300">'); // debug
+    try {
+        const allItems = await getAllItems(); // Data TBD
+        res.send(JSON.stringify(allItems));
+        // res.status(200).json({allItems});
+    } catch(err) {
+        res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
+    }
 });
 
 // Start server
