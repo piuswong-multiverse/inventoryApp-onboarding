@@ -18,6 +18,16 @@ const getAllItems = async () => {
     return items;
 };
 
+// GET one
+const getOneItem = async (id) => {
+    const item = await Item.findOne({
+        where: {
+            id: id
+        }
+    });
+    return item;
+};
+
 // Define routes; need async if accessing db
 app.get('/', async (req, res) => {
     // UI TBD
@@ -27,6 +37,17 @@ app.get('/', async (req, res) => {
         res.status(200).json({allItems});
     } catch(err) {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
+    }
+});
+
+app.get('/items/:num', async (req,res) => {
+    try {
+        const {num} = req.params;
+        const item = await getOneItem(num);
+        console.log(item);
+        res.status(200).json({item});
+    } catch (err) {
+        res.send(`Error: ${err} <br/> <img src="http://placekitten.com/100/200"><br/>`); // debug
     }
 });
 
