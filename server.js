@@ -29,9 +29,13 @@ const getOneItem = async (id) => {
 };
 
 // Define routes; need async if accessing db
+app.get('/', (req,res) => {
+    res.status(200).sendFile('views/index.html', {root : __dirname});
+});
 
-// All items
-app.get('/', async (req, res) => {
+// API
+// Get all items
+app.get('/api/items', async (req, res) => {
     // UI TBD
     try {
         const allItems = await getAllItems(); // Data TBD
@@ -41,9 +45,8 @@ app.get('/', async (req, res) => {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
     }
 });
-
-// One item
-app.get('/items/:num', async (req,res) => {
+// Get one item
+app.get('/api/items/:num', async (req,res) => {
     try {
         const {num} = req.params;
         const item = await getOneItem(num);
