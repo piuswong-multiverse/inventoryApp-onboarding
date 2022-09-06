@@ -16,7 +16,7 @@ let showItems = async () => {
         console.log(item);
         let itemDisplay = document.createElement('div');
         itemDisplay.classList.add('item');
-        itemDisplay.innerHTML = `<div class="name">${item.name}</div>
+        itemDisplay.innerHTML = `<div class="name"><a href="items/${item.id}">${item.name}</a></div>
             <div class="description">${item.description}</div>
             <div class="price">${item.price}</div>
             <div class="image"><img src="${item.imageUrl}" altText = "It's a cat"></div>`;

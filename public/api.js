@@ -5,4 +5,11 @@ const fetchAllItems = async () => {
     return data.allItems;
 };
 
-export { fetchAllItems };
+const fetchOneItem = async (num) => {
+    const response = await fetch(`http://localhost:3000/api/items/${num}`);
+    const data = await response.json();
+    // console.log(data); // debug
+    return data.item;
+};
+
+export { fetchAllItems, fetchOneItem };
