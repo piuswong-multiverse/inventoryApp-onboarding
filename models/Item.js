@@ -26,10 +26,6 @@ const Item = db.define('Items', {
         defaultValue: null,
         allowNull: true
     }
-    // category: {  // this is a many-to-many relationship TBD later
-    //     type: Sequelize.STRING,
-    //     defaultValue: ""
-    // }
 });
 
 module.exports = Item;

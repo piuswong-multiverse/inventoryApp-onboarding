@@ -74,4 +74,22 @@ const random10 = [
     }
 ];
 
-module.exports = { random10 };
+const categoriesSeed = [
+  {
+    name: "floof"
+  },
+  {
+    name: "chonk"
+  },
+  {
+    name: "long"
+  },
+  {
+    name: "smol"
+  },
+  {
+    name: "hungry"
+  }
+];
+
+module.exports = { random10, categoriesSeed };
