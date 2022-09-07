@@ -10,7 +10,7 @@ app.use(express.static('public')); // for React build later?
 
 // Access database
 const db = require('./models/db');
-const Item = require('./models/Item');
+const { Item, Category } = require('./models/index');
 
 // GET all
 const getAllItems = async () => {
