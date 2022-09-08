@@ -14,13 +14,16 @@ const { Item, Category } = require('./models/index');
 
 // GET all
 const getAllItems = async () => {
-    const items = await Item.findAll();
+    const items = await Item.findAll({
+        include: Category
+    });
     return items;
 };
 
 // GET one
 const getOneItem = async (id) => {
     const item = await Item.findOne({
+        include: Category,
         where: {
             id: id
         }
