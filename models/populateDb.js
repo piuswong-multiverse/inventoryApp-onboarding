@@ -28,6 +28,12 @@ const associateCategories = async () => {
     let items = await Item.findAll();
     for await (const item of items){
         await item.addCategory(Math.floor(Math.random()*5+1));
+        if(Math.random()>0.5){
+            await item.addCategory(Math.floor(Math.random()*5+1));
+        }
+        if(Math.random()>0.8){
+            await item.addCategory(Math.floor(Math.random()*5+1));
+        }
         // console.log(item.id); // debug    
     }
 }
