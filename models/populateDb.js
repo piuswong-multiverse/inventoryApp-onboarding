@@ -8,7 +8,9 @@ const { random10, categoriesSeed } = require('./random');
 const populateDb = async () => {
 
     // don't call .sync() for every model (can mess up associations); call sequelize.sync() once
-    await db.sync().then( (res) => {
+
+    // "force:true" to empty db below shouldn't be used lightly! Bad for production... 
+    await db.sync({ foce: true }).then( (res) => {
         Item.bulkCreate(random10).then(() => {
             console.log(`Successfully seeded main inventory data.`);
         });
@@ -25,7 +27,7 @@ const associateCategories = async () => {
     // if needing loops, need async loop
     let items = await Item.findAll();
     for await (const item of items){
-        await item.addCategory(Math.floor(Math.random()*5));
+        await item.addCategory(Math.floor(Math.random()*5+1));
         // console.log(item.id); // debug    
     }
 }
