@@ -3,7 +3,7 @@ import React from 'react';
 const Operations = () => {
 
     return(
-        <div>
+        <div className = "operations">
             buttons to click:  (1) show all, (x) CRUD operations TBD
         </div>
     );

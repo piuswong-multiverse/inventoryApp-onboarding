@@ -1,0 +1,25 @@
+/* Main styling TODO */
+/* Header/Nav */ 
+header {
+    text-align: center;
+}
+.title {
+    font-weight: bold;
+    color: rgb(0, 12, 187);
+}
+
+/* Buttons/Forms */
+.operations {
+    text-align: center;
+}
+
+/* Display */
+#item-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.item {
+    margin: 2em;
+    width: 400px;
+}
