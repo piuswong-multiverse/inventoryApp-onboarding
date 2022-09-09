@@ -4,14 +4,11 @@ const Display = ( { view }) => {
 
     const [items, setItems] = useState([]);
 
-    // const displayCategories = (categories) => { // takes Category object as argument
-    //     let categoryString = "";
-    //     Object.keys(categories).forEach( key => {
-    //         // console.log(key, categories[key]); // debug
-    //         categoryString = categoryString.concat(`<li>${categories[key].name}</li>`);
-    //     });
-    //     return categoryString;
-    // };
+    const displayCategories = (categories) => { // takes Category object as argument
+        return categories.map( (category) => {
+            return <li key={category.id}>{category.name}</li>
+        });
+    };
 
     const getAllItems = async () => {
         const response = await fetch('/api/items/');
@@ -35,7 +32,7 @@ const Display = ( { view }) => {
                     <div className="description">{item.description}</div>
                     <div className="price">${item.price}</div> 
                     <div className="image"><img src={`${item.imageUrl}`} alttext = "It's a cat" /></div>
-                    {/* <div class="categories">Categories:<ul>${displayCategories(item.Categories)}</ul></div> */}
+                    <div className="categories">Categories:<ul>{displayCategories(item.Categories)}</ul></div>
                 </div>     
             );
         }) 
