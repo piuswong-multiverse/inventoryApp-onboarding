@@ -3,7 +3,7 @@
 // Initialize express
 const express = require('express');
 const app = express();
-const port = 3000; // change in deployment or as needed
+const port = 3001; // change in deployment or as needed
 
 // Define front-end directory
 app.use(express.static('public')); // for React build later?
