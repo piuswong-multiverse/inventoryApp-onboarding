@@ -18,6 +18,7 @@ const App = () => {
                 <Operations />
                 <Display 
                     view = {view}
+                    setView = {setView}
                 />
             </main>
         </div>
