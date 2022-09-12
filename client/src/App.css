@@ -12,6 +12,25 @@ header {
 .operations {
     text-align: center;
 }
+button {
+    padding: 0.5em;
+    font-size: 1.5em;
+    border: solid 2px navy;
+    border-radius: 10px;
+    color: blue;
+    background: lightblue;
+}
+button:hover {
+    color: blueviolet;
+    background: lightgreen;
+    border-color: green;
+}
+button:active {
+    color: red;
+}
+.operations button {
+    margin: 1em;
+}
 
 /* Display */
 #item-display {
@@ -22,4 +41,47 @@ header {
 .item {
     margin: 2em;
     width: 400px;
+    display: flex;
+}
+.item > div {
+    margin: 0.5em;
+}
+.item .item-content {
+    display: flex;
+    flex-direction: column;
+}
+.item .item-content > div {
+    margin: 0.5em;
+}
+.item .categories ul {
+    list-style: none;
+}
+.item .categories ul li {
+    margin-right: 1em;
+}
+
+#item-display.view-summary {
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+#item-display.view-summary .item {
+    width: 500px;
+    margin: auto;
+}
+#item-display.view-summary .item .item-content{
+    flex-direction: row;
+}
+#item-display.view-summary .item .name {
+    width: 200px;
+}
+#item-display.view-summary .item button {
+    padding: 0.25em;
+    font-size: 1.25em;
+}
+#item-display.view-summary .item .categories {
+    width: unset;
+    display: flex;
+}
+#item-display.view-summary .item .categories ul {
+    display: flex;
 }

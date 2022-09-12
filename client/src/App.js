@@ -15,7 +15,9 @@ const App = () => {
         <div>
             <Header />
             <main>
-                <Operations />
+                <Operations 
+                    setView = {setView}
+                />
                 <Display 
                     view = {view}
                     setView = {setView}

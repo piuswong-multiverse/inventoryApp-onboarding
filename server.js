@@ -19,6 +19,13 @@ const getAllItems = async () => {
     });
     return items;
 };
+const getAllItemNames = async () => {
+    const items = await Item.findAll({
+        attributes: ['id','name'],
+        include: Category
+    });
+    return items;
+};
 
 // GET one
 const getOneItem = async (id) => {
@@ -45,11 +52,18 @@ app.get('/items/:num', (req,res) => {
 // API
 // Get all items
 app.get('/api/items', async (req, res) => {
-    // UI TBD
     try {
         const allItems = await getAllItems(); // Data TBD
         // res.send(JSON.stringify(allItems));
         res.status(200).json({allItems});
+    } catch(err) {
+        res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
+    }
+});
+app.get('/api/items/names', async (req, res) => {
+    try {
+        const allItemNames = await getAllItemNames(); // Data TBD
+        res.status(200).json({allItemNames});
     } catch(err) {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
     }
