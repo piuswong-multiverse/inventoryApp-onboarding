@@ -35,6 +35,9 @@ const getOneItem = async (id) => {
 app.get('/', (req,res) => {
     res.status(200).sendFile('views/index.html', {root : __dirname});
 });
+app.get('/items', (req,res) => {
+    res.status(200).sendFile('views/all.html', {root : __dirname});
+});
 app.get('/items/:num', (req,res) => {
     res.status(200).sendFile('views/item.html', {root : __dirname});
 });
