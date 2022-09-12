@@ -73,7 +73,7 @@ app.get('/api/items/:num', async (req,res) => {
     try {
         const {num} = req.params;
         const item = await getOneItem(num);
-        console.log(item);
+        // console.log(item);
         res.status(200).json({item});
     } catch (err) {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/100/200"><br/>`); // debug

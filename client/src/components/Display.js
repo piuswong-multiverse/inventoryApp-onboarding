@@ -31,7 +31,7 @@ const Display = ( { view, setView }) => {
             const response = await fetch('/api/items/names');
             const data = await response.json(); 
             let items = data.allItemNames;
-            console.log(items); // debug
+            // console.log(items); // debug
             setItems(items);
         } catch (err) {
             setItems({});
@@ -101,17 +101,17 @@ const Display = ( { view, setView }) => {
     useEffect(() => { // this runs after first mounting of components
         if(view==="summary"){
             getAllItemNames();
-            console.log("Getting all items, summary..."); // debug
+            // console.log("Getting all items, summary..."); // debug
         } else if(view==="all"){
             getAllItems();
-            console.log("Getting all items, detailed..."); // debug
+            // console.log("Getting all items, detailed..."); // debug
         } else if(view==="one"){
             getOneItem(itemId);
-            console.log("Getting one item..."); // debug
+            // console.log("Getting one item..."); // debug
         }
     }, [view, itemId])
 
-    console.log(view, items); // debug
+    // console.log(view, items); // debug
     // console.log(Object.keys(items).length); // debug
     // console.log(items); // debug
 
