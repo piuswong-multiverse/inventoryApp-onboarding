@@ -16,6 +16,7 @@ const App = () => {
             <Header />
             <main>
                 <Operations 
+                    view = {view}
                     setView = {setView}
                 />
                 <Display 

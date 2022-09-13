@@ -121,7 +121,7 @@ const Display = ( { view, setView }) => {
                 view==="summary" ? displayItems(items) :
                 view==="all" ? displayItems(items) :
                 view==="one" ? displayItem(items) :
-                "TODO"
+                null
             }
         </div>
     );

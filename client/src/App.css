@@ -31,12 +31,36 @@ button:active {
 .operations button {
     margin: 1em;
 }
+.create-item form {
+    display: flex;
+    flex-direction: column;
+}
+.create-item form label {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0.5em auto;
+}
+.create-item form .form-heading {
+    width: 100px;
+    text-align: right;
+    margin-right: 1em;;
+}
+.create-item form input,
+.create-item form textarea {
+    width: 300px;
+}
+.create-item form button[type="submit"] {
+    width: unset;
+    background: yellow;
+}
+
 
 /* Display */
 #item-display {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background: aliceblue;
 }
 .item {
     margin: 2em;
