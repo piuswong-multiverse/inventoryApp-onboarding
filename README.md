@@ -48,6 +48,7 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
             * You may need to reset the npm cache (``npm install``) and/or reset the servers.
             * Dev environment might need OS-specific port. See: https://stackoverflow.com/questions/45367298/could-not-proxy-request-pusher-auth-from-localhost3000-to-http-localhost500
 12. Create basic UI in React
+    * Extra: Install React Dev Tools to help debug: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
 13. Fetch API data from backend, display in frontend
     * Note: Fetch calls should be ``async``, called inside ``useEffect()``; other components should not be ``async``
 14. Create appropriate user controls to choose what to display
