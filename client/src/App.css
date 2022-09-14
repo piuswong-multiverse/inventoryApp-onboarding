@@ -31,6 +31,9 @@ button:active {
 .operations button {
     margin: 1em;
 }
+.create-item {
+    background: lightgoldenrodyellow;
+}
 .create-item form {
     display: flex;
     flex-direction: column;
@@ -46,7 +49,8 @@ button:active {
     margin-right: 1em;;
 }
 .create-item form input,
-.create-item form textarea {
+.create-item form textarea,
+.create-tem form .form-categories {
     width: 300px;
 }
 .create-item form button[type="submit"] {

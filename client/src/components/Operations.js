@@ -1,4 +1,5 @@
 import React from 'react';
+import AddItem from './AddItem';
 
 const Operations = ( { view, setView } ) => {
 
@@ -17,38 +18,16 @@ const Operations = ( { view, setView } ) => {
                 </button>
             </div>
     
-            { view==="add" ?
-                <div className = "create-item">
-                    <form> 
-                        <label>
-                            <div className="form-heading">Name:</div>
-                            <input type="text" id="name" />
-                        </label>
-                        <label>
-                            <div className="form-heading">Description:</div>
-                            <textarea defaultValue={""} id="description" />
-                        </label>
-                        <label>
-                            <div className="form-heading">Price ($):</div>
-                            <input type="number" id="price" min="0.01" step="0.01" />
-                        </label>
-                        <label>
-                            <div className="form-heading">Image URL:</div>
-                            <input type="url" id="imageUrl" />
-                        </label>
-                        <div>
-                            <button type="submit" value="Submit">
-                                Submit New Item!
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                : null
-            }   
-
             <div>
                 TODO: more buttons to click -- update, delete
             </div>
+
+            { view==="add" ?
+                <AddItem 
+                    setView = {setView}
+                />
+                : null
+            }   
 
         </div>
     );
