@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const AddItem = ({ setView }) => {
+
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+
+    const updateName = (event) => {
+        // TODO: can add some validation, debouncing, modification...
+        setName(event.target.value);
+    }
+
+    const updateDescription = (event) => {
+        // TODO: can add some validation, debouncing, modification...
+        setDescription(event.target.value);
+    }
 
     const handleSubmit = (e) => {
         console.log("Trying to add item..."); // debug
@@ -11,17 +24,19 @@ const AddItem = ({ setView }) => {
         setView("summary");
     }
 
+    console.log(name, description); // debug
+
     return(
         <div className = "create-item">
             <form> 
 
                 <label>
                     <div className="form-heading">Name:</div>
-                    <input type="text" id="name" />
+                    <input type="text" id="name" value={name} onChange={updateName} />
                 </label>
                 <label>
                     <div className="form-heading">Description:</div>
-                    <textarea defaultValue={""} id="description" />
+                    <textarea id="description" value={description} onChange={updateDescription} />
                 </label>
                 <label>
                     <div className="form-heading">Price ($):</div>
