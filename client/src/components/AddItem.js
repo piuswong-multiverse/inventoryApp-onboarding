@@ -4,6 +4,7 @@ const AddItem = ({ setView }) => {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const [value, setValue] = useState(1);
 
     const updateName = (event) => {
         // TODO: can add some validation, debouncing, modification...
@@ -15,6 +16,11 @@ const AddItem = ({ setView }) => {
         setDescription(event.target.value);
     }
 
+    const updateValue = (event) => {
+        let val = Math.floor(100*event.target.value)/100;
+        setValue(val);
+    }
+
     const handleSubmit = (e) => {
         console.log("Trying to add item..."); // debug
         e.preventDefault();
@@ -24,7 +30,7 @@ const AddItem = ({ setView }) => {
         setView("summary");
     }
 
-    console.log(name, description); // debug
+    console.log(name, description, value); // debug
 
     return(
         <div className = "create-item">
@@ -40,7 +46,7 @@ const AddItem = ({ setView }) => {
                 </label>
                 <label>
                     <div className="form-heading">Price ($):</div>
-                    <input type="number" id="price" min="0.01" step="0.01" />
+                    <input type="number" id="price" min="0.01" step="0.01" value={value} onChange={updateValue} />
                 </label>
                 <label>
                     <div className="form-heading">Image URL:</div>
