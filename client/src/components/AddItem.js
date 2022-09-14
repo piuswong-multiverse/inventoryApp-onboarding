@@ -1,9 +1,20 @@
 import React from 'react';
 
 const AddItem = ({ setView }) => {
+
+    const handleSubmit = (e) => {
+        console.log("Trying to add item..."); // debug
+        e.preventDefault();
+        // add data to database 
+        
+        // and load up the summary page again
+        setView("summary");
+    }
+
     return(
         <div className = "create-item">
             <form> 
+
                 <label>
                     <div className="form-heading">Name:</div>
                     <input type="text" id="name" />
@@ -20,6 +31,7 @@ const AddItem = ({ setView }) => {
                     <div className="form-heading">Image URL:</div>
                     <input type="url" id="imageUrl" />
                 </label>
+
                 {/* TODO: can make categories dynamic later */}
                 <div className="form-categories">Categories</div>
                 <label>
@@ -42,11 +54,13 @@ const AddItem = ({ setView }) => {
                     <div className="form-heading">hungry</div>
                     <input type="checkbox" name="categories" value="hungry"/>
                 </label>
+
                 <div>
-                    <button type="submit" value="Submit">
+                    <button type="submit" value="Submit" onClick={handleSubmit} >
                         Submit New Item!
                     </button>
                 </div>
+
             </form>
         </div>
     );
