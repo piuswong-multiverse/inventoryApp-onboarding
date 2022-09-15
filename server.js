@@ -1,13 +1,17 @@
 // Server
 
 // Initialize express
-const { request } = require('express');
 const express = require('express');
 const app = express();
 const port = 3001; // change in deployment or as needed
 
 // Define front-end directory
-app.use(express.static('public')); // for React build later?
+app.use(express.static('public')); // for backend testing
+
+// parsing middleware for form input data & json
+app.use(express.urlencoded({ extended: false })); // prevents nested objects as POST inputs
+app.use(express.json()); // important -- loads middleware; puts POST request data in req.body
+
 
 // Access database
 const db = require('./models/db');
@@ -83,8 +87,9 @@ app.get('/api/items/:num', async (req,res) => {
 });
 // Post one item
 app.post('/api/item', async (req,res) => {
-    console.log(request);
-    const data = { test: "blah", test2: 1234};
+    console.log("Received POST request!", req.body); // .body for data
+    // const data = { test: "blah", test2: 1234}; // debug
+    const data = await req.body;
     res.json(data); // TODO    
 });
 
