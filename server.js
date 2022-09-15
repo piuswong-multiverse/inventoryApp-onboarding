@@ -1,6 +1,7 @@
 // Server
 
 // Initialize express
+const { request } = require('express');
 const express = require('express');
 const app = express();
 const port = 3001; // change in deployment or as needed
@@ -50,7 +51,7 @@ app.get('/items/:num', (req,res) => {
 });
 
 // API
-// Get all items
+// Get all item details
 app.get('/api/items', async (req, res) => {
     try {
         const allItems = await getAllItems(); // Data TBD
@@ -60,6 +61,7 @@ app.get('/api/items', async (req, res) => {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
     }
 });
+// Get all item names and categories
 app.get('/api/items/names', async (req, res) => {
     try {
         const allItemNames = await getAllItemNames(); // Data TBD
@@ -68,7 +70,7 @@ app.get('/api/items/names', async (req, res) => {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/200/300"><br/>`); // debug
     }
 });
-// Get one item
+// Get one item details
 app.get('/api/items/:num', async (req,res) => {
     try {
         const {num} = req.params;
@@ -78,6 +80,12 @@ app.get('/api/items/:num', async (req,res) => {
     } catch (err) {
         res.send(`Error: ${err} <br/> <img src="http://placekitten.com/100/200"><br/>`); // debug
     }
+});
+// Post one item
+app.post('/api/item', async (req,res) => {
+    console.log(request);
+    const data = { test: "blah", test2: 1234};
+    res.json(data); // TODO    
 });
 
 // All other routes

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddItem = ({ setView }) => {
 
@@ -7,6 +7,7 @@ const AddItem = ({ setView }) => {
     const [value, setValue] = useState(1);
     const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/300x150");
     const [categories, setCategories] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
 
     const updateName = (event) => {
         // TODO: can add some validation, debouncing, modification...
@@ -51,13 +52,42 @@ const AddItem = ({ setView }) => {
     }
 
     const handleSubmit = (e) => {
-        console.log("Trying to add item..."); // debug
         e.preventDefault();
-        // add data to database 
-        
-        // and load up the summary page again
-        setView("summary");
+        setSubmitted(true)
     }
+
+    useEffect(() => {
+        console.log("Trying to add item..."); // debug
+        if(submitted){
+            // add data to database 
+            const dataToSend = {
+                name: name,
+                description: description,
+                value: value,
+                imageUrl: imageUrl,
+                categories: categories
+            }
+            const postData = async () => {
+                try{
+                    const response = await fetch('/api/item', {
+                        method: "POST",
+                        headers: {
+                            // 'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(dataToSend)
+                    });
+                    const json = await response.json();
+                    console.log(json);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            postData();
+            // and then load up the summary page again
+            // .then{setView("summary");}
+        }
+    },[submitted]);
 
     // console.log(name, description, value, imageUrl, categories, categories.length); // debug
 
@@ -102,7 +132,7 @@ const AddItem = ({ setView }) => {
                 </label>
                 <label>
                     <div className="form-heading">hungry</div>
-                    <input type="checkbox" name="categories" value="hungry" onChange={updateCategories} />
+                    <input type="checkbox" name="categories" value="hungry" onClick={updateCategories} />
                 </label>
 
                 <div>
