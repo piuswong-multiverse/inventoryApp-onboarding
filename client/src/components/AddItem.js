@@ -5,6 +5,8 @@ const AddItem = ({ setView }) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [value, setValue] = useState(1);
+    const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/300x150");
+    const [categories, setCategories] = useState([]);
 
     const updateName = (event) => {
         // TODO: can add some validation, debouncing, modification...
@@ -18,7 +20,34 @@ const AddItem = ({ setView }) => {
 
     const updateValue = (event) => {
         let val = Math.floor(100*event.target.value)/100;
+        // TODO: handle display of zero value better, show dollar sign, debouncing...
         setValue(val);
+    }
+
+    const updateImageUrl = (event) => {
+        // TODO: can add some validation, debouncing, modification...
+        // try url like: https://via.placeholder.com/300x150
+        setImageUrl(event.target.value);
+    }
+
+    const updateCategories = (event) => {
+        // TODO: handle arbitrary categories instead of just the premade ones (going w/ making rendering dynamic)
+        const {value, checked} = event.target;
+        // console.log(value, checked); // debug
+        if(checked){
+            // add to categories
+            setCategories([...categories,value]);
+        } else {
+            // remove from categories
+            let newCategories = [...categories]; // need deep copy because splice() mutates array
+            let indexToDelete = newCategories.indexOf(value);
+            if(indexToDelete>-1){
+                newCategories.splice(indexToDelete,1);
+                setCategories(newCategories);
+            } else {
+                throw new Error('Category to delete not found!');
+            }
+        }
     }
 
     const handleSubmit = (e) => {
@@ -30,7 +59,7 @@ const AddItem = ({ setView }) => {
         setView("summary");
     }
 
-    console.log(name, description, value); // debug
+    // console.log(name, description, value, imageUrl, categories, categories.length); // debug
 
     return(
         <div className = "create-item">
@@ -50,30 +79,30 @@ const AddItem = ({ setView }) => {
                 </label>
                 <label>
                     <div className="form-heading">Image URL:</div>
-                    <input type="url" id="imageUrl" />
+                    <input type="url" id="imageUrl" value={imageUrl} onChange={updateImageUrl} />
                 </label>
 
                 {/* TODO: can make categories dynamic later */}
                 <div className="form-categories">Categories</div>
                 <label>
                     <div className="form-heading">floof</div>
-                    <input type="checkbox" name="categories" value="floof"/>
+                    <input type="checkbox" name="categories" value="floof" onChange={updateCategories} />
                 </label>
                 <label>
                     <div className="form-heading">chonk</div>
-                    <input type="checkbox" name="categories" value="chonk"/>
+                    <input type="checkbox" name="categories" value="chonk" onChange={updateCategories} />
                 </label>
                 <label> 
                     <div className="form-heading">smol</div>
-                    <input type="checkbox" name="categories" value="smol"/>
+                    <input type="checkbox" name="categories" value="smol" onChange={updateCategories} />
                 </label>
                 <label>
                     <div className="form-heading">long</div>
-                    <input type="checkbox" name="categories" value="long"/>
+                    <input type="checkbox" name="categories" value="long" onChange={updateCategories} />
                 </label>
                 <label>
                     <div className="form-heading">hungry</div>
-                    <input type="checkbox" name="categories" value="hungry"/>
+                    <input type="checkbox" name="categories" value="hungry" onChange={updateCategories} />
                 </label>
 
                 <div>
