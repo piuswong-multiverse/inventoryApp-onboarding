@@ -10,7 +10,7 @@ const populateDb = async () => {
     // don't call .sync() for every model (can mess up associations); call sequelize.sync() once
 
     // "force:true" to empty db below shouldn't be used lightly! Bad for production... 
-    await db.sync({ foce: true }).then( (res) => {
+    await db.sync({ force: true }).then( (res) => {
         Item.bulkCreate(random10).then(() => {
             console.log(`Successfully seeded main inventory data.`);
         });

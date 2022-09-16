@@ -31,7 +31,6 @@ const getAllItemNames = async () => {
     });
     return items;
 };
-
 // GET one
 const getOneItem = async (id) => {
     const item = await Item.findOne({
@@ -87,10 +86,17 @@ app.get('/api/items/:num', async (req,res) => {
 });
 // Post one item
 app.post('/api/item', async (req,res) => {
-    console.log("Received POST request!", req.body); // .body for data
     // const data = { test: "blah", test2: 1234}; // debug
     const data = await req.body;
-    res.json(data); // TODO    
+    console.log("Received POST request!", data); // .body for data
+    // INSERT one item w/o categories
+    Item.create({
+        name: data.name,
+        description: data.description,
+        price: data.value,
+        imageUrl: data.imageUrl
+    });
+    res.send({message: "Finished creating data record."}); // TODO    
 });
 
 // All other routes

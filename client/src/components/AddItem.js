@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const AddItem = ({ setView }) => {
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [value, setValue] = useState(1);
+    const [name, setName] = useState("New Item");
+    const [description, setDescription] = useState("This is the description!");
+    const [price, setPrice] = useState(1.99);
     const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/300x150");
     const [categories, setCategories] = useState([]);
     const [submitted, setSubmitted] = useState(false);
@@ -19,10 +19,10 @@ const AddItem = ({ setView }) => {
         setDescription(event.target.value);
     }
 
-    const updateValue = (event) => {
+    const updatePrice = (event) => {
         let val = Math.floor(100*event.target.value)/100;
-        // TODO: handle display of zero value better, show dollar sign, debouncing...
-        setValue(val);
+        // TODO: handle display of zero price better, show dollar sign, debouncing...
+        setPrice(val);
     }
 
     const updateImageUrl = (event) => {
@@ -63,7 +63,7 @@ const AddItem = ({ setView }) => {
             const dataToSend = {
                 name: name,
                 description: description,
-                value: value,
+                price: price,
                 imageUrl: imageUrl,
                 categories: categories
             }
@@ -89,7 +89,7 @@ const AddItem = ({ setView }) => {
         }
     },[submitted]);
 
-    // console.log(name, description, value, imageUrl, categories, categories.length); // debug
+    // console.log(name, description, price, imageUrl, categories, categories.length); // debug
 
     return(
         <div className = "create-item">
@@ -105,7 +105,7 @@ const AddItem = ({ setView }) => {
                 </label>
                 <label>
                     <div className="form-heading">Price ($):</div>
-                    <input type="number" id="price" min="0.01" step="0.01" value={value} onChange={updateValue} />
+                    <input type="number" id="price" min="0.01" step="0.01" value={price} onChange={updatePrice} />
                 </label>
                 <label>
                     <div className="form-heading">Image URL:</div>
