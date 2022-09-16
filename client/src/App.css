@@ -77,6 +77,7 @@ button:active {
 .item .item-content {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 .item .item-content > div {
     margin: 0.5em;
@@ -87,7 +88,14 @@ button:active {
 .item .categories ul li {
     margin-right: 1em;
 }
-
+.item .image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-height: 300px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
 #item-display.view-summary {
     flex-wrap: nowrap;
     flex-direction: column;
