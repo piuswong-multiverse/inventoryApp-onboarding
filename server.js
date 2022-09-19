@@ -100,7 +100,7 @@ app.post('/api/item', async (req,res) => {
         const newItem = await Item.create({
             name: data.name,
             description: data.description,
-            price: data.value,
+            price: data.price,
             imageUrl: data.imageUrl
         });
         data.categories.map(async (category) => {

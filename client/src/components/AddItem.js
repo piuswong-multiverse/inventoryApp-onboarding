@@ -92,6 +92,7 @@ const AddItem = ({ setView }) => {
     },[submitted, name, description, price, imageUrl, categories]);
 
     // console.log(name, description, price, imageUrl, categories, categories.length); // debug
+    // TODO: make price show cents properly to 2 digits even when ending with 0
 
     return(
         <div className = "create-item">
