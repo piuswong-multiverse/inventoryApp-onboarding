@@ -54,4 +54,8 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 14. Create appropriate user controls to choose what to display
     * Control what is shown with ``useState``
     * Handle errors related to unfulfilled promises with ``try/catch`` blocks, and checking if data are of appropriate types
-
+15. Create Insert/Add item functionality
+    * separate front-end view/componenet
+    * API in back-end for adding to DB -- start with basics (non-associated attributes)
+        * Testing: As time allows -- define separate Jest tests for new API endpoint; but also will see it in front-end
+    * Incorporate associated attributes (i.e. "categories" in this project)
