@@ -16,6 +16,11 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 2. Express Route to ADD the Item
 3. Form or Fetch request to add item when form is submitted
 
+## Tier III — Deleting an Item
+1. Delete button on Single Item View
+2. Express Route to DELETE the Item
+3. Fetch request to delete item when button is clicked
+
 ## Steps to develop
 0. Set up repo, gitignore; plan development over branches; Document notes in Readme
 1. Set up node/npm, nodemon, sequelize, sqlite3, jest with
@@ -59,3 +64,8 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
     * API in back-end for adding to DB -- start with basics (non-associated attributes)
         * Testing: As time allows -- define separate Jest tests for new API endpoint; but also will see it in front-end
     * Incorporate associated attributes (i.e. "categories" in this project)
+16. Create Delete item functionality
+    * Front-end: Button somewhere associated with item to delete
+    * API in back-end for deleting records - including associations
+        * Testing: Jest tests, but also use front-end
+        * Extra:  Negative testing, bulk testing using random data generator data
