@@ -17,7 +17,6 @@ app.use(express.json()); // important -- loads middleware; puts POST request dat
 const db = require('./models/db');
 const { Item, Category } = require('./models/index');
 
-// GET all
 const getAllItems = async () => {
     const items = await Item.findAll({
         include: Category
@@ -31,7 +30,6 @@ const getAllItemNames = async () => {
     });
     return items;
 };
-// GET one
 const getOneItem = async (id) => {
     const item = await Item.findOne({
         include: Category,
@@ -40,6 +38,14 @@ const getOneItem = async (id) => {
         }
     });
     return item;
+};
+const getCategoryId = async (categoryString) => {
+    const category = await Category.findOne({
+        where: {
+            name: categoryString
+        }
+    });
+    return category.id;
 };
 
 // Define routes; need async if accessing db
@@ -86,17 +92,27 @@ app.get('/api/items/:num', async (req,res) => {
 });
 // Post one item
 app.post('/api/item', async (req,res) => {
-    // const data = { test: "blah", test2: 1234}; // debug
-    const data = await req.body;
-    console.log("Received POST request!", data); // .body for data
-    // INSERT one item w/o categories
-    Item.create({
-        name: data.name,
-        description: data.description,
-        price: data.value,
-        imageUrl: data.imageUrl
-    });
-    res.send({message: "Finished creating data record."}); // TODO    
+    try{
+        // const data = { test: "blah", test2: 1234}; // debug
+        const data = await req.body;
+        console.log("Received POST request!", data); // .body for data
+        // INSERT one item w/ separate category handler (separate table in db)
+        const newItem = await Item.create({
+            name: data.name,
+            description: data.description,
+            price: data.value,
+            imageUrl: data.imageUrl
+        });
+        data.categories.map(async (category) => {
+            let id = await getCategoryId(category);
+            // console.log("Category text:", category, "id:", id); // debug 
+            newItem.addCategory(id);
+        });
+        res.send({message: `Finished creating data record for ${newItem.name}.`}); // TODO    
+    } catch (err) {
+        res.send({message: err});
+    }
+
 });
 
 // All other routes

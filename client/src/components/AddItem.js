@@ -9,6 +9,8 @@ const AddItem = ({ setView }) => {
     const [categories, setCategories] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
+    // TODO: Can refactor one function to handle all form events if this structure becomes too much
+
     const updateName = (event) => {
         // TODO: can add some validation, debouncing, modification...
         setName(event.target.value);
@@ -83,11 +85,11 @@ const AddItem = ({ setView }) => {
                     console.log(error);
                 }
             };
-            postData();
-            // and then load up the summary page again
-            // .then{setView("summary");}
+            postData().then(() => {
+                setView("summary");
+            });
         }
-    },[submitted]);
+    },[submitted, name, description, price, imageUrl, categories]);
 
     // console.log(name, description, price, imageUrl, categories, categories.length); // debug
 
