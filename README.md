@@ -16,10 +16,15 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 2. Express Route to ADD the Item
 3. Form or Fetch request to add item when form is submitted
 
-## Tier III — Deleting an Item
+## Tier 3: Deleting an Item
 1. Delete button on Single Item View
 2. Express Route to DELETE the Item
 3. Fetch request to delete item when button is clicked
+
+## Tier 4: Updating an Item (patch)
+1. Edit form on Single Item View
+2. Express Route to UPDATE the Item
+3. Fetch request to update item when form is submitted
 
 ## Steps to develop
 0. Set up repo, gitignore; plan development over branches; Document notes in Readme
@@ -67,5 +72,11 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 16. Create Delete item functionality
     * Front-end: Button somewhere associated with item to delete
     * API in back-end for deleting records - including associations
+        * Testing: Jest tests, but also use front-end
+        * Extra:  Negative testing, bulk testing using random data generator data
+17. Create Update/Patch item functionality
+    * Front-end: Button to edit single item, form to edit item fields
+    * API in back-end to update records -- start with basics (non-associated attributes)
+    * Incorporate associated attrivutes (i.e. "categories" in this project)
         * Testing: Jest tests, but also use front-end
         * Extra:  Negative testing, bulk testing using random data generator data
