@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false })); // prevents nested objects as 
 app.use(express.json()); // important -- loads middleware; puts POST request data in req.body
 
 
-// Access database
+// Access database, non-API calls
 const db = require('./models/db');
 const { Item, Category } = require('./models/index');
 
@@ -93,7 +93,6 @@ app.get('/api/items/:num', async (req,res) => {
 // Post one item
 app.post('/api/item', async (req,res) => {
     try{
-        // const data = { test: "blah", test2: 1234}; // debug
         const data = await req.body;
         console.log("Received POST request!", data); // .body for data
         // INSERT one item w/ separate category handler (separate table in db)
@@ -108,11 +107,23 @@ app.post('/api/item', async (req,res) => {
             // console.log("Category text:", category, "id:", id); // debug 
             newItem.addCategory(id);
         });
-        res.send({message: `Finished creating data record for ${newItem.name}.`}); // TODO    
+        res.send({message: `Finished creating data record for ${newItem.name}.`});  // TODO: make this run after promise completed above
     } catch (err) {
         res.send({message: err});
     }
-
+});
+// Delete one item
+app.post('/api/delete', async (req,res) => {
+    try{
+        const data = await req.body;
+        console.log("Received POST request do delete item...", data); // .body for data
+        // Delete record in main table, and delete associations
+        const itemToDelete = await Item.findByPk(data.id);
+        await itemToDelete.destroy();
+        res.send({message: `Finished deleting data record for item id# ${data.id}, ${itemToDelete.name}.`});  // TODO: make this run after promise completed above
+    } catch (err) {
+        res.send({message: err});
+    }
 });
 
 // All other routes

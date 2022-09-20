@@ -121,3 +121,15 @@ button:active {
 #item-display.view-summary .item .categories ul {
     display: flex;
 }
+
+.delete-container {
+    display: flex;
+    justify-content: center;
+}
+.delete-container button {
+    color: red;
+    background: lightpink;
+}
+.delete-container button:hover {
+    background: lightsalmon;
+}

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 const OneItem = ( { item, view, setView, setItemId } ) => {
+
+    const [deletePressed, setDeletePressed] = useState(false);
 
     const displayCategories = (categories) => { // takes Category object as argument
         // to prevent errors, check that categories exists first
@@ -8,6 +10,36 @@ const OneItem = ( { item, view, setView, setItemId } ) => {
             return <li key={category.id}>{category.name}</li>
         }) : null ;
     };
+
+    const handleDeleteButton = () => {
+        setDeletePressed(true);
+    };
+
+    useEffect(() => {
+        // TODO: Warnings before deletion
+        const deleteItem = async () => {
+            try{
+                const res = await fetch('/api/delete',{
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: item.id
+                    })
+                });
+                const resJson = await res.json();
+                console.log("Message from server:", resJson.message);
+            } catch (err) {
+                console.log("Deletion problem:", err);
+            }
+        }
+        if(deletePressed){
+            deleteItem().then(() => {
+                setView("summary")
+            });    
+        }
+    },[deletePressed])
 
     return(   
         item ? 
@@ -38,6 +70,13 @@ const OneItem = ( { item, view, setView, setItemId } ) => {
                     <div className="categories-heading">Categories:</div>
                     <ul>{displayCategories(item.Categories)}</ul>
                 </div>
+                { view==="one" ? 
+                    <div className="delete-container">
+                        <button onClick={handleDeleteButton}>
+                            Delete Item &#x26a0; &#xfe0f;
+                        </button>
+                    </div> : null
+                }
             </div>
         </div>
         : null
