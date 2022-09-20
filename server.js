@@ -119,8 +119,9 @@ app.post('/api/delete', async (req,res) => {
         console.log("Received POST request do delete item...", data); // .body for data
         // Delete record in main table, and delete associations
         const itemToDelete = await Item.findByPk(data.id);
-        await itemToDelete.destroy();
-        res.send({message: `Finished deleting data record for item id# ${data.id}, ${itemToDelete.name}.`});  // TODO: make this run after promise completed above
+        await itemToDelete.destroy().then(() => {
+            res.send({message: `Finished deleting data record for item id# ${data.id}, ${itemToDelete.name}.`});
+        });
     } catch (err) {
         res.send({message: err});
     }
