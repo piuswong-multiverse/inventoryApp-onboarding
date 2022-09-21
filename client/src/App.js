@@ -20,6 +20,7 @@ const App = () => {
                     view = {view}
                     setView = {setView}
                     itemToEdit = {itemToEdit}
+                    setItemToEdit = {setItemToEdit}
                 />
                 <Display 
                     view = {view}

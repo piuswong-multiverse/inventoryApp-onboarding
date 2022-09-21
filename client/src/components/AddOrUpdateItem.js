@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
-
+    console.log(itemToEdit);
     // Initialize starting form values depending on if you're ADD-ing a new item or UPDATE-ing an old one
     const initialValues = view==="update" ? itemToEdit : {
         name: "New Item",

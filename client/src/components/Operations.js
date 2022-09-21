@@ -13,9 +13,13 @@ const Operations = ( { view, setView, itemToEdit } ) => {
                 <button onClick={() => { setView("all") } }>
                     All Items, Details
                 </button>
-                <button onClick={() => { setView("add") }}>
-                    Add New Item
-                </button>
+                { view!=="update" ?
+                    <button onClick={() => { 
+                        setView("add");
+                        }}>
+                        Add New Item
+                    </button> : null
+                }
             </div>
     
             <div>
