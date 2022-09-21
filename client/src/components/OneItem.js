@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const OneItem = ( { item, view, setView, setItemId } ) => {
+const OneItem = ( { item, view, setView, setItemId, setItemToEdit } ) => {
 
     const [deletePressed, setDeletePressed] = useState(false);
 
@@ -13,6 +13,25 @@ const OneItem = ( { item, view, setView, setItemId } ) => {
 
     const handleDeleteButton = () => {
         setDeletePressed(true);
+    };
+
+    const handleUpdateButton = () => {
+        const getCategoryArray = () => {
+            let categoryArray = [];
+            item.Categories.map( (category) => {
+                categoryArray.push(category.name);
+            });
+            return categoryArray;
+        };
+        let categoryArray = getCategoryArray();
+        setItemToEdit({
+            name: item.name,
+            description: item.description,
+            price: item.price,
+            imageUrl: item.imageUrl,
+            categories: categoryArray
+        });
+        setView("update");
     };
 
     useEffect(() => {
@@ -71,11 +90,19 @@ const OneItem = ( { item, view, setView, setItemId } ) => {
                     <ul>{displayCategories(item.Categories)}</ul>
                 </div>
                 { view==="one" ? 
-                    <div className="delete-container">
-                        <button onClick={handleDeleteButton}>
-                            Delete Item &#x26a0; &#xfe0f;
-                        </button>
-                    </div> : null
+                    <>
+                        <div className="update-container">
+                            <button onClick={handleUpdateButton}>
+                                Edit Item &#9997;
+                            </button>
+                        </div>
+                        <div className="delete-container">
+                            <button onClick={handleDeleteButton}>
+                                Delete Item &#x26a0; &#xfe0f;
+                            </button>
+                        </div>
+                    </>
+                    : null
                 }
             </div>
         </div>

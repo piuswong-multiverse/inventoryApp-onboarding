@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-const AddItem = ({ setView }) => {
+const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
 
-    const [name, setName] = useState("New Item");
-    const [description, setDescription] = useState("This is the description!");
-    const [price, setPrice] = useState(1.99);
-    const [imageUrl, setImageUrl] = useState("https://via.placeholder.com/300x150");
-    const [categories, setCategories] = useState([]);
+    // Initialize starting form values depending on if you're ADD-ing a new item or UPDATE-ing an old one
+    const initialValues = view==="update" ? itemToEdit : {
+        name: "New Item",
+        description: "This is the description!",
+        price: 1.99,
+        imageUrl: "http://placekitten.com/g/200/230",
+        categories: []
+    };
+
+    const [name, setName] = useState(initialValues.name);
+    const [description, setDescription] = useState(initialValues.description);
+    const [price, setPrice] = useState(initialValues.price);
+    const [imageUrl, setImageUrl] = useState(initialValues.imageUrl);
+    const [categories, setCategories] = useState(initialValues.categories);
     const [submitted, setSubmitted] = useState(false);
 
     // TODO: Can refactor one function to handle all form events if this structure becomes too much
@@ -59,7 +68,6 @@ const AddItem = ({ setView }) => {
     }
 
     useEffect(() => {
-        console.log("Trying to add item..."); // debug
         if(submitted){
             // add data to database 
             const dataToSend = {
@@ -85,11 +93,18 @@ const AddItem = ({ setView }) => {
                     console.log(error);
                 }
             };
-            postData().then(() => {
-                setView("summary");
-            });
+            if(view==="add"){
+                console.log("Trying to add item..."); // debug
+                postData().then(() => {
+                    setView("summary");
+                });    
+            } else if(view==="update"){
+                console.log("Trying to update item..."); // debug
+                // TODO
+            }
         }
     },[submitted, name, description, price, imageUrl, categories]);
+
 
     // console.log(name, description, price, imageUrl, categories, categories.length); // debug
     // TODO: make price show cents properly to 2 digits even when ending with 0
@@ -140,7 +155,7 @@ const AddItem = ({ setView }) => {
 
                 <div>
                     <button type="submit" value="Submit" onClick={handleSubmit} >
-                        Submit New Item!
+                        Submit { view==="add" ? "New" : view==="update" ? "Modified" : null } Item!
                     </button>
                 </div>
 
@@ -149,4 +164,4 @@ const AddItem = ({ setView }) => {
     );
 }
 
-export default AddItem
+export default AddOrUpdateItem

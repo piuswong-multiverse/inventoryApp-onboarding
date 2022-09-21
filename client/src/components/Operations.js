@@ -1,7 +1,7 @@
 import React from 'react';
-import AddItem from './AddItem';
+import AddOrUpdateItem from './AddOrUpdateItem';
 
-const Operations = ( { view, setView } ) => {
+const Operations = ( { view, setView, itemToEdit } ) => {
 
     return(
         <div className = "operations">
@@ -23,8 +23,15 @@ const Operations = ( { view, setView } ) => {
             </div>
 
             { view==="add" ?
-                <AddItem 
+                <AddOrUpdateItem 
+                    view = {view}
                     setView = {setView}
+                /> 
+                : view==="update" ?
+                <AddOrUpdateItem 
+                    view = {view}
+                    setView = {setView}
+                    itemToEdit = {itemToEdit}
                 />
                 : null
             }   

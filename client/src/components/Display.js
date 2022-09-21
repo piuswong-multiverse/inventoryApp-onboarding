@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import OneItem from './OneItem';
 
-const Display = ( { view, setView }) => {
+const Display = ( { view, setView, setItemToEdit }) => {
 
     const [items, setItems] = useState({});
     const [itemId, setItemId] = useState(null);
@@ -88,6 +88,7 @@ const Display = ( { view, setView }) => {
                     view = {view}
                     setView = {setView}
                     setItemId = {setItemId}
+                    setItemToEdit = {setItemToEdit}
                 /> :
                 null
             }

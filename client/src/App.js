@@ -10,6 +10,7 @@ import './App.css';
 const App = () => {
 
     const [view, setView] = useState("summary"); // views: summary, all, one, add
+    const [itemToEdit, setItemToEdit] = useState({}); // only used for update/modify/edit functionality
     
     return(
         <div>
@@ -18,10 +19,12 @@ const App = () => {
                 <Operations 
                     view = {view}
                     setView = {setView}
+                    itemToEdit = {itemToEdit}
                 />
                 <Display 
                     view = {view}
                     setView = {setView}
+                    setItemToEdit = {setItemToEdit}
                 />
             </main>
         </div>
