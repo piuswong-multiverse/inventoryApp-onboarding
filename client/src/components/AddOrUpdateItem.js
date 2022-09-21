@@ -105,8 +105,11 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
         }
     },[submitted, name, description, price, imageUrl, categories]);
 
+    const categoryShouldBeChecked = (category) => {
+        return categories.indexOf(category)>=0
+    };
 
-    // console.log(name, description, price, imageUrl, categories, categories.length); // debug
+    console.log(name, description, price, imageUrl, categories, categories.length); // debug
     // TODO: make price show cents properly to 2 digits even when ending with 0
 
     return(
@@ -134,23 +137,28 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
                 <div className="form-categories">Categories</div>
                 <label>
                     <div className="form-heading">floof</div>
-                    <input type="checkbox" name="categories" value="floof" onChange={updateCategories} />
+                    <input type="checkbox" name="categories" value="floof" onChange={updateCategories} 
+                        checked={categoryShouldBeChecked("floof")}/>
                 </label>
                 <label>
                     <div className="form-heading">chonk</div>
-                    <input type="checkbox" name="categories" value="chonk" onChange={updateCategories} />
+                    <input type="checkbox" name="categories" value="chonk" onChange={updateCategories}
+                        checked={categoryShouldBeChecked("chonk")}/>
                 </label>
                 <label> 
                     <div className="form-heading">smol</div>
-                    <input type="checkbox" name="categories" value="smol" onChange={updateCategories} />
+                    <input type="checkbox" name="categories" value="smol" onChange={updateCategories} 
+                        checked={categoryShouldBeChecked("smol")}/>
                 </label>
                 <label>
                     <div className="form-heading">long</div>
-                    <input type="checkbox" name="categories" value="long" onChange={updateCategories} />
+                    <input type="checkbox" name="categories" value="long" onChange={updateCategories}
+                        checked={categoryShouldBeChecked("long")}/>
                 </label>
                 <label>
                     <div className="form-heading">hungry</div>
-                    <input type="checkbox" name="categories" value="hungry" onClick={updateCategories} />
+                    <input type="checkbox" name="categories" value="hungry" onChange={updateCategories}
+                        checked={categoryShouldBeChecked("hungry")}/>
                 </label>
 
                 <div>
