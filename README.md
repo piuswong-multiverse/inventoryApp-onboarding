@@ -1,7 +1,16 @@
 # inventoryApp-onboarding
 For testing, learning, etc.  See project: https://app.codingrooms.com/app/course/bootcamp-part-2-_UhUFa6/b/tiers-uhoR2sU
 
-## Tier 1 (MVP): 
+## Notes on running this code
+
+1. Clone this repo; install dependencies: ``npm install``
+2. Seed the database with ``node models/populateDb``
+3. Test with ``jest`` -- but these are not very comprehensive yet; back-end POST endpoints still TODO
+4. By default Front-end runs on port 3000, backend on 3001; API calls via proxy server in dev environment
+
+## Tiers of Functionality
+
+### Tier 1 (MVP): 
 1. User can view all items in warehouse inventory
     * Sequelize model for item
         * Name, descr, price, category, image
@@ -11,22 +20,22 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 2. Express Route to GET one item
     * Front-end view for one item
 
-## Tier 2: Adding an item
+### Tier 2: Adding an item
 1. Add Item front-end form
 2. Express Route to ADD the Item
 3. Form or Fetch request to add item when form is submitted
 
-## Tier 3: Deleting an Item
+### Tier 3: Deleting an Item
 1. Delete button on Single Item View
 2. Express Route to DELETE the Item
 3. Fetch request to delete item when button is clicked
 
-## Tier 4: Updating an Item (patch)
+### Tier 4: Updating an Item (patch)
 1. Edit form on Single Item View
 2. Express Route to UPDATE the Item
 3. Fetch request to update item when form is submitted
 
-## Steps to develop
+## Steps to Develop the Project
 0. Set up repo, gitignore; plan development over branches; Document notes in Readme
 1. Set up node/npm, nodemon, sequelize, sqlite3, jest with
     * ``npm install nodemon sequelize sqlite3 jest express``
@@ -77,6 +86,7 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 17. Create Update/Patch item functionality
     * Front-end: Button to edit single item, form to edit item fields
     * API in back-end to update records -- start with basics (non-associated attributes)
-    * Incorporate associated attrivutes (i.e. "categories" in this project)
+    * Incorporate associated attributes (i.e. "categories" in this project)
         * Testing: Jest tests, but also use front-end
         * Extra:  Negative testing, bulk testing using random data generator data
+        * Extra: Proper routing when finishing editing data
