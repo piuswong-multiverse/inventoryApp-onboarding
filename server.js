@@ -139,10 +139,16 @@ app.post('/api/update', async (req,res) => {
             price: data.price,
             imageUrl: data.imageUrl
         });
-        await updatedItem.save(); // don't forget this!  
-        data.categories.map(async (category) => {
-            let id = await getCategoryId(category);
-            updatedItem.addCategory(id);
+        await updatedItem.save(); // don't forget this!  Or it won't save to the db...
+        // Remove all old category associations and remake them // TODO make this dynamic
+        const categoryList = ["floof","chonk","smol","long","hungry"];
+        categoryList.map(async (categoryToCheck) => {
+            let id = await getCategoryId(categoryToCheck);
+            if(data.categories.indexOf(categoryToCheck)===-1){ 
+                await updatedItem.removeCategory(id)
+            } else {
+                await updatedItem.addCategory(id);
+            }
         });
         res.send({message: `Finished updating data record for ${updatedItem.name}.`});  // TODO: make this run after promise completed above
     } catch (err) {
