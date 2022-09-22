@@ -25,6 +25,7 @@ const App = () => {
                 <Display 
                     view = {view}
                     setView = {setView}
+                    itemToEdit = {itemToEdit}
                     setItemToEdit = {setItemToEdit}
                 />
             </main>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import OneItem from './OneItem';
 
-const Display = ( { view, setView, setItemToEdit }) => {
+const Display = ( { view, setView, itemToEdit, setItemToEdit }) => {
 
+    const itemIdDefault = itemToEdit.id ? itemToEdit.id : null; // Display last edited item by default, if needed (only for single item view)
     const [items, setItems] = useState({});
-    const [itemId, setItemId] = useState(null);
+    const [itemId, setItemId] = useState(itemIdDefault);
 
     const getAllItems = async () => {
         try{

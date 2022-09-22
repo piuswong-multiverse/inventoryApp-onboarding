@@ -101,8 +101,7 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
             };
             console.log(`Trying to ${view} item...`); // debug
             postData().then(() => {
-                setView("summary");
-                // TODO:  If UPDATE-ing only, view goes back to single item view instead; item id needs to pass to single view
+                view==="update" ? setView("one") : setView("summary");
             });    
         }
     },[submitted, name, description, price, imageUrl, categories]);
