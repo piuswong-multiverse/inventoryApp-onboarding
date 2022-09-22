@@ -25,6 +25,7 @@ const OneItem = ( { item, view, setView, setItemId, setItemToEdit } ) => {
         };
         let categoryArray = getCategoryArray();
         setItemToEdit({
+            id: item.id,
             name: item.name,
             description: item.description,
             price: item.price,
@@ -70,7 +71,7 @@ const OneItem = ( { item, view, setView, setItemId, setItemToEdit } ) => {
                 <div className="name">
                 { view==="summary" || view==="all" ? 
                     <button href="#" onClick={(e) => {
-                        e.preventDefault(); // step client from loading new page
+                        e.preventDefault(); // stop client from loading new page
                         setView("one"); 
                         setItemId(item.id);
                     }}>{item.name}</button>

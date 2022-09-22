@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
-    console.log(itemToEdit);
+
     // Initialize starting form values depending on if you're ADD-ing a new item or UPDATE-ing an old one
     const initialValues = view==="update" ? itemToEdit : {
         name: "New Item",
@@ -70,39 +70,40 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
     useEffect(() => {
         if(submitted){
             // add data to database 
-            const dataToSend = {
-                id: itemToEdit.id,
+            let dataToSend = {
                 name: name,
                 description: description,
                 price: price,
                 imageUrl: imageUrl,
                 categories: categories
             }
+            let endpoint = '/api/item';
+            if(view==="update"){
+                dataToSend.id = itemToEdit.id;
+                endpoint = 'api/update';
+            }
+            console.log(itemToEdit);
             const postData = async () => {
                 try{
-                    const response = await fetch('/api/item', {
+                    const response = await fetch(endpoint, {
                         method: "POST",
                         headers: {
-                            // 'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(dataToSend)
                     });
+                    console.log("res", response);
                     const json = await response.json();
-                    console.log(json);
+                    console.log(json); // debug
                 } catch (error) {
                     console.log(error);
                 }
             };
-            if(view==="add"){
-                console.log("Trying to add item..."); // debug
-                postData().then(() => {
-                    setView("summary");
-                });    
-            } else if(view==="update"){
-                console.log("Trying to update item..."); // debug
-                // TODO
-            }
+            console.log(`Trying to ${view} item...`); // debug
+            postData().then(() => {
+                setView("summary");
+                // TODO:  If UPDATE-ing only, view goes back to single item view instead; item id needs to pass to single view
+            });    
         }
     },[submitted, name, description, price, imageUrl, categories]);
 
@@ -110,7 +111,7 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
         return categories.indexOf(category)>=0
     };
 
-    console.log(name, description, price, imageUrl, categories, categories.length); // debug
+    // console.log(name, description, price, imageUrl, categories, categories.length); // debug
     // TODO: make price show cents properly to 2 digits even when ending with 0
 
     return(
