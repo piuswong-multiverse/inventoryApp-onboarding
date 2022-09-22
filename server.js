@@ -126,6 +126,29 @@ app.post('/api/delete', async (req,res) => {
         res.send({message: err});
     }
 });
+// Update one item
+app.post('/api/update', async (req,res) => {
+    try{
+        const data = await req.body;
+        console.log("Received POST request to update item:", data); // .body for data
+        // Update (set) one item w/ separate category handler
+        const itemToUpdate = await Item.findByPk(data.id);
+        const updatedItem = await itemToUpdate.set({ // Using .set instead of .update because whole entry being saved together
+            name: data.name,
+            description: data.description,
+            price: data.price,
+            imageUrl: data.imageUrl
+        });
+        await updatedItem.save(); // don't forget this!  
+        data.categories.map(async (category) => {
+            let id = await getCategoryId(category);
+            updatedItem.addCategory(id);
+        });
+        res.send({message: `Finished updating data record for ${updatedItem.name}.`});  // TODO: make this run after promise completed above
+    } catch (err) {
+        res.send({message: err});
+    }
+});
 
 // All other routes
 app.all('*', (req, res) => {

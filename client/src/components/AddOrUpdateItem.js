@@ -71,6 +71,7 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
         if(submitted){
             // add data to database 
             const dataToSend = {
+                id: itemToEdit.id,
                 name: name,
                 description: description,
                 price: price,
