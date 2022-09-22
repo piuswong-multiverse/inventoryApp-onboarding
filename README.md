@@ -1,12 +1,25 @@
 # inventoryApp-onboarding
 For testing, learning, etc.  See project: https://app.codingrooms.com/app/course/bootcamp-part-2-_UhUFa6/b/tiers-uhoR2sU
 
-## Notes on running this code
+## Notes on this code as of September 2022
 
-1. Clone this repo; install dependencies: ``npm install``
+1. Running this locally: Clone this repo, install dependencies: ``npm install``
 2. Seed the database with ``node models/populateDb``
 3. Test with ``jest`` -- but these are not very comprehensive yet; back-end POST endpoints still TODO
 4. By default Front-end runs on port 3000, backend on 3001; API calls via proxy server in dev environment
+5. Still to do:  
+    * Tier 5 bonus tasks 
+        * users, orders, 
+        * visually stunning, 
+        * cart for purchase, 
+        * mobile responsiveness, 
+        * admin and authentication-based privileges, 
+        * server-side validation for add/edit functions 
+    * deployment options, 
+    * dynamic handling of unlimited categories (tags), 
+    * filter/display items by category, price, type, etc
+    * web accessibility,
+    * image file handling instead of links
 
 ## Tiers of Functionality
 
