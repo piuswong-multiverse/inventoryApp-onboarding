@@ -104,7 +104,7 @@ const AddOrUpdateItem = ({ view, setView, itemToEdit }) => {
                 view==="update" ? setView("one") : setView("summary");
             });    
         }
-    },[submitted, name, description, price, imageUrl, categories]);
+    },[submitted, name, description, price, imageUrl, categories, itemToEdit, setView, view]);
 
     const categoryShouldBeChecked = (category) => {
         return categories.indexOf(category)>=0
