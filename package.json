@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll --coverage",
-    "start": "node server",
-    "build": "cd client && npm run build",
-    "seed": "node ./models/populateDb.js"
+    "server": "npm install && npm start",
+    "client": "cd client && npm install && npm run build",
+    "seed": "node ./models/populateDb.js",
+    "start": "npm run client && npm run server && npm run seed"
   },
   "repository": {
     "type": "git",
