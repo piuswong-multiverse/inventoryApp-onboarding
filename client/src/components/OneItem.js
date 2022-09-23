@@ -20,6 +20,7 @@ const OneItem = ( { item, view, setView, setItemId, setItemToEdit } ) => {
             let categoryArray = [];
             item.Categories.map( (category) => {
                 categoryArray.push(category.name);
+                return null;
             });
             return categoryArray;
         };
@@ -59,7 +60,7 @@ const OneItem = ( { item, view, setView, setItemId, setItemToEdit } ) => {
                 setView("summary")
             });    
         }
-    },[deletePressed])
+    },[deletePressed, setView, itemId])
 
     return(   
         item ? 
