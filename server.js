@@ -6,7 +6,8 @@ const app = express();
 const port = process.env.PORT || 3000; // change in deployment or as needed
 
 // Define front-end directory
-app.use(express.static('public')); // for backend testing
+// app.use(express.static('public')); // for backend testing
+app.use(express.static(path.join(__dirname,'client','build')));
 
 // parsing middleware for form input data & json
 app.use(express.urlencoded({ extended: false })); // prevents nested objects as POST inputs
@@ -49,15 +50,19 @@ const getCategoryId = async (categoryString) => {
 };
 
 // Define routes; need async if accessing db
-app.get('/', (req,res) => {
-    res.status(200).sendFile('views/index.html', {root : __dirname});
+app.get('/', (req, res) => {
+    res.status(200).sendFile(path.join(__dirname,'client','build','index.html'));
 });
-app.get('/items', (req,res) => {
-    res.status(200).sendFile('views/all.html', {root : __dirname});
-});
-app.get('/items/:num', (req,res) => {
-    res.status(200).sendFile('views/item.html', {root : __dirname});
-});
+// Routes below are for testing backend
+// app.get('/', (req,res) => {
+//     res.status(200).sendFile('views/index.html', {root : __dirname});
+// });
+// app.get('/items', (req,res) => {
+//     res.status(200).sendFile('views/all.html', {root : __dirname});
+// });
+// app.get('/items/:num', (req,res) => {
+//     res.status(200).sendFile('views/item.html', {root : __dirname});
+// });
 
 // API
 // Get all item details

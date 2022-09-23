@@ -103,3 +103,6 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
         * Testing: Jest tests, but also use front-end
         * Extra:  Negative testing, bulk testing using random data generator data
         * Extra: Proper routing when finishing editing data
+18. Deploy project
+    * Set up Railway account, connected to GitHub repo
+    * Ensure React is deployed properly (if using Create-React-App: https://create-react-app.dev/docs/deployment/)
