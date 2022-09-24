@@ -60,7 +60,7 @@ const OneItem = ( { item, view, setView, setItemId, setItemToEdit } ) => {
                 setView("summary")
             });    
         }
-    },[deletePressed, setView, itemId])
+    },[deletePressed, setView, item.id])
 
     return(   
         item ? 
