@@ -109,3 +109,4 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
         * If using Create-React-App, properly serve React from backend; see: https://create-react-app.dev/docs/deployment/
         * Consider handling using Railway CLI to run deployment script in local Railway environment for testing, before having it deploy online: https://docs.railway.app/develop/cli
         * Adjust package.json for project, to run all relevant scripts in the correct order (create database, seed data, run back-end server connecting to database, build front-end, run front-end; careful to not create recursive scripts!): https://docs.npmjs.com/cli/v8/using-npm/scripts
+    * Example deployment site: https://inventoryapp-onboarding-production.up.railway.app/
