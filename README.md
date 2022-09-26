@@ -105,4 +105,7 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
         * Extra: Proper routing when finishing editing data
 18. Deploy project
     * Set up Railway account, connected to GitHub repo
-    * Ensure React is deployed properly (if using Create-React-App: https://create-react-app.dev/docs/deployment/)
+    * Ensure React is deployed properly 
+        * If using Create-React-App, properly serve React from backend; see: https://create-react-app.dev/docs/deployment/
+        * Consider handling using Railway CLI to run deployment script in local Railway environment for testing, before having it deploy online: https://docs.railway.app/develop/cli
+        * Adjust package.json for project, to run all relevant scripts in the correct order (create database, seed data, run back-end server connecting to database, build front-end, run front-end; careful to not create recursive scripts!): https://docs.npmjs.com/cli/v8/using-npm/scripts
