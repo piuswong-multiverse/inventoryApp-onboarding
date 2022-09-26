@@ -6,7 +6,9 @@ For testing, learning, etc.  See project: https://app.codingrooms.com/app/course
 1. Running this locally: Clone this repo, install dependencies: ``npm install``
 2. Seed the database with ``node models/populateDb``
 3. Test with ``jest`` -- but these are not very comprehensive yet; back-end POST endpoints still TODO
-4. By default Front-end runs on port 3000, backend on 3001; API calls via proxy server in dev environment
+4. Check different branches for simplified functionality.  
+    * In the ``tier4`` branch and below, by default the front-end runs on port 3000, backend on 3001; API calls are via proxy server in dev environment. Visit http://localhost:3000/ for general use.  http://localhost:3001/ is also served just as a test endpoint to see that the backend Node server is working.
+    * In the ``deployment`` branch, it's set up for deployment on Railway.app.  The backend was modified to serve the React front-end files directly (in "client"), which access the Node API endpoints.  The ``package.json`` was modified to run one start script that sequentially creates and seeds the SQLite database, builds the React front-end, and runs the backend server.
 5. Still to do:  
     * Tier 5 bonus tasks 
         * users, orders, 
